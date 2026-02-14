@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap');
+@import 'prismjs/themes/prism-tomorrow.css';
+
+@import "prismjs/themes/prism-tomorrow.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Elegant Dark Theme Palette */
+  --font-body: 'Inter', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --background: 220 15% 97%;
+  --foreground: 222 47% 11%;
+  
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+ 
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+ 
+  --primary: 220 60% 50%; /* Deep Blue */
+  --primary-foreground: 210 40% 98%;
+ 
+  --secondary: 220 14% 94%;
+  --secondary-foreground: 222 47% 11%;
+ 
+  --muted: 220 14% 94%;
+  --muted-foreground: 215 16% 47%;
+ 
+  --accent: 260 60% 60%; /* Subtle Purple for specific accents */
+  --accent-foreground: 210 40% 98%;
+ 
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 214 32% 91%;
+  --input: 214 32% 91%;
+  --ring: 220 60% 50%;
+ 
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: 224 71% 4%;
+  --foreground: 213 31% 91%;
+ 
+  --card: 224 71% 4%;
+  --card-foreground: 213 31% 91%;
+ 
+  --popover: 224 71% 4%;
+  --popover-foreground: 215 20.2% 65.1%;
+ 
+  --primary: 217 91% 60%;
+  --primary-foreground: 222 47% 11%;
+ 
+  --secondary: 217 19% 27%;
+  --secondary-foreground: 210 40% 98%;
+ 
+  --muted: 217 19% 27%;
+  --muted-foreground: 215 20.2% 65.1%;
+ 
+  --accent: 217 19% 27%;
+  --accent-foreground: 210 40% 98%;
+ 
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+ 
+  --border: 217 19% 27%;
+  --input: 217 19% 27%;
+  --ring: 224 76% 48%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    @apply tracking-tight;
+  }
+  code, pre {
+    font-family: var(--font-mono);
+  }
+}
+
+/* Custom Scrollbar for a cleaner look */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* Syntax Highlighting Overrides for clean aesthetic */
+pre[class*="language-"] {
+  background: #1e1e1e !important;
+  border-radius: var(--radius);
+  margin: 0 !important;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
