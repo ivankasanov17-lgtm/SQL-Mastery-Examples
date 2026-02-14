@@ -134,15 +134,15 @@ export default function DialectPage({ title }: { title: string }) {
               </CardHeader>
               <CardContent>
                 <p className="text-lg leading-relaxed mb-6">
-                  {selectedTerm.description}
+                  {selectedTerm.description} 
                 </p>
-                {selectedTerm.syntax || selectedTerm.schemaDefinition && (
+                {(selectedTerm.syntax || selectedTerm.schemaDefinition) && (
                   <div className="mb-6">
                     <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-2">
-                      Синтаксис
+                      Синтаксис 
                     </h3>
                     <pre className="bg-secondary/50 p-4 rounded-xl font-mono text-sm border border-border">
-                      {selectedTerm.syntax || selectedTerm.schemaDefinition}
+                      {selectedTerm.syntax || selectedTerm.schemaDefinition} 
                     </pre>
                   </div>
                 )}
