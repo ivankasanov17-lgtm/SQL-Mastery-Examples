@@ -1,0 +1,148 @@
+# Junior (Базовые команды и конструкции SQL)
+# DML (Data Manipulation Language)
+SELECT [ALL | DISTINCT] column1, column2, ... FROM table_name [WHERE condition] [GROUP BY column] [HAVING condition] [ORDER BY column [ASC | DESC]] [LIMIT number] [OFFSET number];
+INSERT INTO table_name (column1, column2, ...) VALUES (value1, value2, ...);
+UPDATE table_name SET column1 = value1, column2 = value2, ... [WHERE condition];
+DELETE FROM table_name [WHERE condition];
+INSERT / UPDATE / DELETE ... RETURNING { * | output_expression [AS alias] [, ...] };
+VALUES (expression [, ...]) [, ...];
+SELECT DISTINCT column1, column2, ... FROM table_name;
+LIMIT { count | ALL };
+OFFSET start [ ROW | ROWS ];
+ORDER BY expression [ ASC | DESC | USING operator ] [ NULLS { FIRST | LAST } ] [, ...];
+WHERE condition;
+GROUP BY grouping_element [, ...];
+HAVING condition;
+
+# DDL (Data Definition Language)
+CREATE TABLE [IF NOT EXISTS] table_name (column_name data_type [column_constraint] [, ...]) [INHERITS (parent_table)] [PARTITION BY {RANGE | LIST | HASH} (column_name)];
+ALTER TABLE [IF EXISTS] table_name action [, ...];
+DROP TABLE [IF EXISTS] table_name [, ...] [CASCADE | RESTRICT];
+TRUNCATE [TABLE] table_name [, ...] [RESTART IDENTITY | CONTINUE IDENTITY] [CASCADE | RESTRICT];
+CREATE [UNIQUE] INDEX [CONCURRENTLY] [name] ON table_name [USING method] (column_name [ASC | DESC] [NULLS {FIRST | LAST}] [, ...]);
+DROP INDEX [CONCURRENTLY] [IF EXISTS] name [, ...] [CASCADE | RESTRICT];
+CREATE [OR REPLACE] VIEW name [ ( column_name [, ...] ) ] AS query;
+DROP VIEW [IF EXISTS] name [, ...] [CASCADE | RESTRICT];
+CREATE SEQUENCE [IF NOT EXISTS] name [INCREMENT [ BY ] increment] [MINVALUE minvalue | NO MINVALUE] [MAXVALUE maxvalue | NO MAXVALUE] [START [ WITH ] start];
+DROP SEQUENCE [IF EXISTS] name [, ...] [CASCADE | RESTRICT];
+
+# Типы соединений (Joins)
+SELECT ... FROM table1 [INNER] JOIN table2 ON table1.column = table2.column;
+SELECT ... FROM table1 LEFT [OUTER] JOIN table2 ON table1.column = table2.column;
+SELECT ... FROM table1 RIGHT [OUTER] JOIN table2 ON table1.column = table2.column;
+SELECT ... FROM table1 FULL [OUTER] JOIN table2 ON table1.column = table2.column;
+SELECT ... FROM table1 CROSS JOIN table2;
+SELECT ... FROM table1 NATURAL [INNER | LEFT | RIGHT | FULL] JOIN table2;
+
+# Управление транзакциями
+BEGIN [WORK | TRANSACTION] [ISOLATION LEVEL {SERIALIZABLE | REPEATABLE READ | READ COMMITTED | READ UNCOMMITTED}];
+COMMIT [WORK | TRANSACTION];
+ROLLBACK [WORK | TRANSACTION];
+
+# Прочие базовые конструкции
+SELECT column_name AS alias_name FROM table_name;
+expression IN (value [, ...]) | expression IN (subquery);
+expression BETWEEN begin_expression AND end_expression;
+expression IS NULL;
+expression IS NOT NULL;
+EXISTS (subquery);
+CASE WHEN condition THEN result [WHEN ... THEN ...] [ELSE result] END;
+CAST (expression AS type) | expression::type;
+query1 UNION [ALL | DISTINCT] query2;
+query1 UNION ALL query2;
+
+# Middle (Продвинутые конструкции и оптимизация)
+# CTE (Common Table Expressions)
+WITH cte_name [(column_name [, ...])] AS (query) [, ...] SELECT ...;
+WITH RECURSIVE cte_name AS (initial_query UNION [ALL] recursive_query) SELECT ...;
+
+# Оконные функции (Window Functions)
+function_name() OVER ( [PARTITION BY expression [, ...]] [ORDER BY expression [ASC | DESC] [, ...]] [frame_clause] );
+PARTITION BY expression [, ...];
+ORDER BY expression [ASC | DESC] [NULLS {FIRST | LAST}] [, ...];
+{ ROWS | RANGE | GROUPS } BETWEEN frame_start AND frame_end;
+LAG(value [, offset [, default_value]]) OVER (...);
+LEAD(value [, offset [, default_value]]) OVER (...);
+FIRST_VALUE(value) OVER (...);
+LAST_VALUE(value) OVER (...);
+NTH_VALUE(value, nth) OVER (...);
+ROW_NUMBER() OVER (...);
+
+# Работа с данными
+COPY table_name [(column_name [, ...])] FROM {'filename' | STDIN} [WITH] (option [, ...]);
+EXPLAIN [(option [, ...])] statement;
+EXPLAIN (ANALYZE, [BUFFERS], [TIMING], ...) statement;
+VACUUM [(FULL, FREEZE, VERBOSE, ANALYZE)] [table_name];
+ANALYZE [VERBOSE] [table_name];
+REINDEX {INDEX | TABLE | SCHEMA | DATABASE | SYSTEM} [CONCURRENTLY] name;
+
+# DDL (Продвинутый)
+CREATE MATERIALIZED VIEW [IF NOT EXISTS] name AS query [WITH [NO] DATA];
+REFRESH MATERIALIZED VIEW [CONCURRENTLY] name [WITH [NO] DATA];
+CREATE [OR REPLACE] FUNCTION name ( [argname argtype [, ...]] ) RETURNS rettype LANGUAGE lang_name AS 'definition';
+CREATE [OR REPLACE] PROCEDURE name ( [argname argtype [, ...]] ) LANGUAGE lang_name AS 'definition';
+CREATE [OR REPLACE] TRIGGER name {BEFORE | AFTER | INSTEAD OF} {event [OR ...]} ON table_name [FOR [EACH] {ROW | STATEMENT}] EXECUTE FUNCTION func_name();
+CREATE TYPE name AS (attribute_name data_type [, ...]) | ENUM ('label' [, ...]);
+CREATE DOMAIN name [AS] data_type [DEFAULT expression] [CONSTRAINT name CHECK (condition)];
+CREATE EXTENSION [IF NOT EXISTS] extension_name [CASCADE];
+COMMENT ON {TABLE | COLUMN | FUNCTION | ...} object_name IS 'text';
+
+# Управление правами (DCL)
+GRANT {privilege [, ...] | ALL} ON object TO {role_name | PUBLIC} [WITH GRANT OPTION];
+REVOKE [GRANT OPTION FOR] {privilege [, ...] | ALL} ON object FROM {role_name | PUBLIC} [CASCADE | RESTRICT];
+CREATE ROLE name [WITH] [LOGIN | NOLOGIN] [SUPERUSER | NOSUPERUSER] [CREATEDB | NOCREATEDB] [CREATEROLE | NOCREATEROLE] [PASSWORD 'password'];
+CREATE USER name [WITH] [option ...];
+ALTER ROLE name [WITH] option [...];
+DROP ROLE [IF EXISTS] name [, ...];
+
+# Senior (Администрирование, репликация, сложные конструкции)
+# Управление сервером и конфигурацией
+SHOW {configuration_parameter | ALL};
+SET [SESSION | LOCAL] configuration_parameter {TO | =} {value | 'value' | DEFAULT};
+ALTER SYSTEM SET configuration_parameter {TO | =} {value | 'value' | DEFAULT};
+# pg_hba.conf: TYPE  DATABASE  USER  ADDRESS  METHOD
+# postgresql.conf: parameter = value
+
+# Блокировки и конкурентный доступ
+LOCK [TABLE] [ONLY] name [, ...] [IN lock_mode MODE] [NOWAIT];
+SELECT ... FOR UPDATE [OF table_name [, ...]] [NOWAIT | SKIP LOCKED];
+SELECT ... FOR SHARE [OF table_name [, ...]] [NOWAIT | SKIP LOCKED];
+SELECT ... FOR NO KEY UPDATE [OF table_name [, ...]] [NOWAIT | SKIP LOCKED];
+SELECT ... FOR KEY SHARE [OF table_name [, ...]] [NOWAIT | SKIP LOCKED];
+SET TRANSACTION ISOLATION LEVEL {SERIALIZABLE | REPEATABLE READ | READ COMMITTED | READ UNCOMMITTED};
+
+# Партиционирование
+CREATE TABLE name (...) PARTITION BY RANGE (column);
+CREATE TABLE name (...) PARTITION BY LIST (column);
+CREATE TABLE name (...) PARTITION BY HASH (column);
+ALTER TABLE name ATTACH PARTITION partition_name {FOR VALUES partition_bound_spec | DEFAULT};
+ALTER TABLE name DETACH PARTITION partition_name [CONCURRENTLY | FINALIZE];
+
+# Полнотекстовый поиск (Конструкции)
+to_tsvector([config,] document);
+to_tsquery([config,] querytext);
+tsvector @@ tsquery;
+
+# Репликация и бэкапы
+# pg_dump [options] dbname > dumpfile
+# pg_restore [options] dumpfile
+# pg_basebackup -D datadir [options]
+# WAL (Write-Ahead Logging)
+# Logical Replication
+# Physical Replication
+CREATE PUBLICATION name [FOR TABLE table_name [, ...] | FOR ALL TABLES];
+CREATE SUBSCRIPTION name CONNECTION 'conninfo' PUBLICATION publication_name [, ...];
+
+# Прочие продвинутые темы
+CREATE TABLESPACE tablespace_name LOCATION 'directory';
+CREATE SCHEMA [IF NOT EXISTS] schema_name [AUTHORIZATION user_name];
+SELECT ... FROM table1, LATERAL (SELECT * FROM table2 WHERE ...) ss;
+SELECT ... FROM table_name TABLESAMPLE method (argument) [REPEATABLE (seed)];
+LISTEN channel;
+NOTIFY channel [, payload];
+PREPARE name [(data_types)] AS statement;
+EXECUTE name [(parameters)];
+DEALLOCATE [PREPARE] {name | ALL};
+DO [LANGUAGE lang_name] code;
+CREATE FUNCTION ... SECURITY DEFINER;
+CREATE FUNCTION ... IMMUTABLE | STABLE | VOLATILE;

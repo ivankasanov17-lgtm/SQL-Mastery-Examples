@@ -14,6 +14,7 @@ import { SQLGraph } from "@/lib/SQLGraph.ts";
 import { ShemaSQL } from "@/lib/ShemaSQL.ts";
 
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { importantPostgreSQLMethods } from "@/lib/PostgreSQL.ts";
 
 interface Argument {
   name: string;
@@ -46,11 +47,13 @@ const dialectTerms: Record<string, Term[]> = {
 export default function DialectPage({ title }: { title: string }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTerm, setSelectedTerm] = useState<Term | null>(null);
+  const [showImportantOnly, setShowImportantOnly] = useState(false);
   const [location] = useLocation();
 
   // Reset selected term when dialect or category changes
   useEffect(() => {
     setSelectedTerm(null);
+    setShowImportantOnly(false);
   }, [title, location]);
 
   const searchParams = new URLSearchParams(location.split("?")[1] || "");
@@ -66,12 +69,15 @@ export default function DialectPage({ title }: { title: string }) {
     ? currentTerms.filter((t) => t.category === categoryFilter)
     : currentTerms;
 
-  const filteredTerms = filteredByCategory.filter(
+  const filteredByImportance = (title === "PostgreSQL" && showImportantOnly)
+    ? filteredByCategory.filter((term) => importantPostgreSQLMethods.includes(term.name))
+    : filteredByCategory;
+
+  const filteredTerms = filteredByImportance.filter(
     (term) =>
       (term.name || term.schemaName).toLowerCase().includes(searchQuery.toLowerCase()) ||
       term.category?.toLowerCase().includes(searchQuery.toLowerCase())
   );
-
   const categories = Array.from(new Set(filteredTerms.map((t) => t.category)));
   const MobileNav = () => (
     <div className="flex items-center justify-between md:hidden mb-6">
@@ -211,14 +217,25 @@ export default function DialectPage({ title }: { title: string }) {
                 Подробная документация по функциям и операторам.
               </p>
             </div>
-            <div className="w-full md:w-auto relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground w-4 h-4" />
-              <Input
-                placeholder="Поиск по терминам..."
-                className="pl-9 w-full md:w-[300px] rounded-xl bg-card"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
+            <div className="w-full md:w-auto flex flex-col md:flex-row gap-4 items-center">
+              {title === "PostgreSQL" && (
+                <Button
+                  variant={showImportantOnly ? "default" : "outline"}
+                  onClick={() => setShowImportantOnly(!showImportantOnly)}
+                  className="w-full md:w-auto rounded-xl"
+                >
+                  {showImportantOnly ? "Показать все" : "Важные методы"}
+                </Button>
+              )}
+              <div className="w-full md:w-auto relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground w-4 h-4" />
+                <Input
+                  placeholder="Поиск по терминам..."
+                  className="pl-9 w-full md:w-[300px] rounded-xl bg-card"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+              </div>
             </div>
           </div>
           <div className="space-y-12">

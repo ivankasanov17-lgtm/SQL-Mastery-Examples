@@ -1,0 +1,238 @@
+# Junior (Базовые функции для повседневной работы)
+# Строковые функции
+length
+lower
+upper
+substring
+trim
+ltrim
+rtrim
+concat
+concat_ws
+left
+right
+replace
+reverse
+split_part
+strpos
+to_char
+to_date
+to_number
+to_timestamp
+initcap
+md5
+
+# Математические функции
+abs
+ceil
+ceiling
+floor
+round
+trunc
+random
+sign
+sqrt
+power
+mod
+div
+pi
+
+# Функции даты и времени
+now
+current_date
+current_time
+current_timestamp
+date_part
+date_trunc
+age
+extract
+localtime
+localtimestamp
+make_date
+make_time
+make_timestamp
+
+# Условные выражения и системные
+coalesce
+nullif
+greatest
+least
+current_database
+current_schema
+current_user
+version
+
+# Middle (Работа с JSON, массивами, последовательностями)
+# JSON функции
+to_json
+to_jsonb
+json_build_object
+json_build_array
+jsonb_build_object
+jsonb_build_array
+json_array_length
+jsonb_array_length
+json_extract_path
+jsonb_extract_path
+json_object_keys
+jsonb_object_keys
+row_to_json
+
+# Функции для работы с массивами
+array_append
+array_cat
+array_dims
+array_length
+array_lower
+array_upper
+array_prepend
+array_remove
+array_replace
+array_to_string
+string_to_array
+unnest
+array_agg (агрегатная, но часто используется)
+
+# Генерация серий
+generate_series
+
+# Последовательности
+nextval
+currval
+setval
+lastval
+
+# Senior (Администрирование, статистика, полнотекстовый поиск, геометрия)
+# Полнотекстовый поиск
+to_tsvector
+to_tsquery
+plainto_tsquery
+phraseto_tsquery
+websearch_to_tsquery
+ts_headline
+ts_rank
+ts_rank_cd
+
+# Геометрические функции (примеры)
+area
+center
+diameter
+height
+width
+radius
+distance
+point
+circle
+box
+polygon
+
+# Сетевые функции
+abbrev
+broadcast
+family
+host
+hostmask
+masklen
+netmask
+network
+set_masklen
+
+# Администрирование и системная информация
+pg_backend_pid
+pg_cancel_backend
+pg_terminate_backend
+pg_reload_conf
+pg_rotate_logfile
+pg_size_pretty
+pg_database_size
+pg_table_size
+pg_indexes_size
+pg_total_relation_size
+pg_relation_size
+pg_column_size
+pg_ls_dir
+pg_read_file
+pg_stat_file
+pg_sleep
+pg_typeof
+pg_get_viewdef
+pg_get_functiondef
+
+# Криптография (если установлен pgcrypto, но есть и встроенные)
+digest
+hmac
+
+# Работа с XML
+xmlcomment
+xmlconcat
+xmlelement
+xmlforest
+xmlpi
+xmlroot
+xmlserialize
+xmlparse
+
+# Внутренние функции PostgreSQL (Internal / System)
+# Эти функции используются внутри системы, для реализации операторов или индексов.
+# Их редко вызывают вручную.
+# Функции ввода/вывода типов
+boolin
+boolout
+byteain
+byteaout
+charin
+charout
+int2in
+int2out
+int4in
+int4out
+textin
+textout
+oidin
+oidout
+json_in
+json_out
+xml_in
+xml_out
+
+# Функции поддержки индексов (B-tree, GIN, GiST, BRIN)
+btint4cmp
+bttextcmp
+gin_extract_jsonb
+gin_consistent_jsonb
+gist_box_consistent
+brin_minmax_add_value
+hashint4
+
+# Функции реализации операторов
+int4eq
+int4lt
+int4pl
+int4mi
+float8div
+float8mul
+text_le
+text_ge
+
+# Системные обработчики
+plpgsql_call_handler
+fmgr_internal_validator
+fdw_handler_in
+index_am_handler_in
+
+# Прочие внутренние
+pg_mcv_list_in
+pg_node_tree_in
+pg_ddl_command_in
+tsvectorin
+tsqueryin
+record_in
+record_out
+cstring_in
+cstring_out
+anyarray_in
+anyarray_out
+void_in
+void_out
+trigger_in
+trigger_out

@@ -1,0 +1,86 @@
+# Junior (Базовые агрегатные функции)
+COUNT
+SUM
+AVG
+MIN
+MAX
+
+# Middle (Работа со строками, массивами, JSON и логикой)
+STRING_AGG
+ARRAY_AGG
+JSON_AGG
+JSONB_AGG
+JSON_OBJECT_AGG
+JSONB_OBJECT_AGG
+BOOL_AND (синоним EVERY)
+BOOL_OR
+ANY_VALUE
+
+# Senior (Статистика, упорядоченные наборы, битовые операции, XML)
+# Статистические функции
+STDDEV
+STDDEV_POP
+STDDEV_SAMP
+VARIANCE
+VAR_POP
+VAR_SAMP
+CORR
+COVAR_POP
+COVAR_SAMP
+REGR_AVGX
+REGR_AVGY
+REGR_COUNT
+REGR_INTERCEPT
+REGR_R2
+REGR_SLOPE
+REGR_SXX
+REGR_SXY
+REGR_SYY
+
+# Ordered-Set Aggregate Functions (требуют WITHIN GROUP)
+MODE
+PERCENTILE_CONT
+PERCENTILE_DISC
+
+# Hypothetical-Set Aggregate Functions (требуют WITHIN GROUP)
+RANK
+DENSE_RANK
+PERCENT_RANK
+CUME_DIST
+
+# Битовые операции
+BIT_AND
+BIT_OR
+BIT_XOR
+
+# Прочие
+XMLAGG
+RANGE_AGG
+RANGE_INTERSECT_AGG
+
+# Пропущенные в вашем списке (рекомендуется добавить)
+GROUPING
+JSON_ARRAYAGG
+JSON_OBJECTAGG
+
+# Функции из вашего списка, отсутствующие в стандартной документации PostgreSQL
+# (Возможно, это функции из расширений или ошибочные названия)
+JSON_AGG_STRICT
+JSON_OBJECT_AGG_STRICT
+JSON_OBJECT_AGG_UNIQUE
+JSON_OBJECT_AGG_UNIQUE_STRICT
+JSONB_AGG_STRICT
+JSONB_OBJECT_AGG_STRICT
+JSONB_OBJECT_AGG_UNIQUE
+JSONB_OBJECT_AGG_UNIQUE_STRICT
+
+# Термины внутренней архитектуры агрегатных функций PostgreSQL
+# (Используются при создании собственных агрегатов через CREATE AGGREGATE)
+State Transition Function (SFUNC)
+State Value (STYPE)
+Final Function (FINALFUNC)
+Initial Condition (INITCOND)
+Moving-Aggregate Mode (MSFUNC, MINVFUNC, MSTYPE)
+Parallel Aggregation (COMBINEFUNC, SERIALFUNC, DESERIALFUNC)
+Sort Operator (SORTOP)
+Hypothetical-Set Aggregates

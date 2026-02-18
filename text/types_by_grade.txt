@@ -1,0 +1,153 @@
+# Junior (Базовые типы данных)
+# Числовые
+int2 (smallint)
+int4 (integer)
+int8 (bigint)
+float4 (real)
+float8 (double precision)
+numeric (decimal)
+serial (autoincrementing int4)
+bigserial (autoincrementing int8)
+
+# Строковые
+text
+varchar (character varying)
+char (character)
+
+# Логические
+bool (boolean)
+
+# Дата и время
+date
+time
+timestamp (timestamp without time zone)
+timestamptz (timestamp with time zone)
+interval
+
+# Идентификаторы
+uuid
+
+# Middle (JSON, массивы, бинарные данные, сети)
+# JSON
+json
+jsonb
+
+# Массивы (примеры, так как любой тип может быть массивом)
+_int4 (integer[])
+_text (text[])
+_varchar (varchar[])
+
+# Бинарные данные
+bytea
+
+# Сетевые адреса
+inet
+cidr
+macaddr
+macaddr8
+
+# Денежный тип
+money
+
+# Битовые строки
+bit
+varbit
+
+# Senior (Геометрия, диапазоны, полнотекстовый поиск, XML)
+# Геометрические типы
+point
+line
+lseg
+box
+path
+polygon
+circle
+
+# Диапазоны (Range types)
+int4range
+int8range
+numrange
+tsrange
+tstzrange
+daterange
+
+# Мультидиапазоны (Multirange types)
+int4multirange
+int8multirange
+nummultirange
+tsmultirange
+tstzmultirange
+datemultirange
+
+# Полнотекстовый поиск
+tsvector
+tsquery
+
+# XML
+xml
+
+# Специализированные
+pg_lsn (Log Sequence Number)
+txid_snapshot
+pg_snapshot
+
+# Системные типы PostgreSQL (Внутренние, редко используются напрямую)
+# Идентификаторы объектов (OID)
+oid
+regproc
+regprocedure
+regoper
+regoperator
+regclass
+regtype
+regrole
+regnamespace
+regconfig
+regdictionary
+tid (Tuple ID)
+xid (Transaction ID)
+cid (Command ID)
+xid8
+
+# Псевдотипы (Используются в определениях функций)
+any
+anyelement
+anyarray
+anynonarray
+anyenum
+anyrange
+anycompatible
+anycompatiblearray
+anycompatiblenonarray
+anycompatiblerange
+anymultirange
+anycompatiblemultirange
+void
+record
+trigger
+event_trigger
+language_handler
+fdw_handler
+index_am_handler
+tsm_handler
+table_am_handler
+internal
+unknown
+cstring
+
+# Типы системных каталогов (Обычно не используются для создания таблиц)
+pg_type
+pg_attribute
+pg_proc
+pg_class
+pg_node_tree
+pg_ndistinct
+pg_dependencies
+pg_mcv_list
+pg_ddl_command
+aclitem
+refcursor
+gtsvector
+
+# Типы, начинающиеся с подчеркивания (например, _int4), являются внутренними именами массивов.
+# В SQL они обычно записываются как type[] (например, integer[]).

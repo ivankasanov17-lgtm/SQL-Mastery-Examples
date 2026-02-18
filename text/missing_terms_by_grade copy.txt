@@ -1,0 +1,148 @@
+# Junior (Базовые команды и конструкции SQL)
+# DML (Data Manipulation Language)
+SELECT
+INSERT
+UPDATE
+DELETE
+RETURNING
+VALUES
+DISTINCT
+LIMIT
+OFFSET
+ORDER BY
+WHERE
+GROUP BY
+HAVING
+
+# DDL (Data Definition Language)
+CREATE TABLE
+ALTER TABLE
+DROP TABLE
+TRUNCATE
+CREATE INDEX
+DROP INDEX
+CREATE VIEW
+DROP VIEW
+CREATE SEQUENCE
+DROP SEQUENCE
+
+# Типы соединений (Joins)
+INNER JOIN
+LEFT JOIN
+RIGHT JOIN
+FULL OUTER JOIN
+CROSS JOIN
+NATURAL JOIN
+
+# Управление транзакциями
+BEGIN
+COMMIT
+ROLLBACK
+
+# Прочие базовые конструкции
+AS (Alias)
+IN
+BETWEEN
+IS NULL
+IS NOT NULL
+EXISTS
+CASE WHEN ... THEN ... ELSE ... END
+CAST (или ::)
+UNION
+UNION ALL
+
+# Middle (Продвинутые конструкции и оптимизация)
+# CTE (Common Table Expressions)
+WITH
+WITH RECURSIVE
+
+# Оконные функции (Window Functions)
+OVER
+PARTITION BY
+ORDER BY (в окне)
+ROWS / RANGE BETWEEN
+LAG
+LEAD
+FIRST_VALUE
+LAST_VALUE
+NTH_VALUE
+ROW_NUMBER
+
+# Работа с данными
+COPY (Импорт/Экспорт данных)
+EXPLAIN (Анализ запросов)
+EXPLAIN ANALYZE
+VACUUM (Очистка мусора)
+ANALYZE (Сбор статистики)
+REINDEX
+
+# DDL (Продвинутый)
+CREATE MATERIALIZED VIEW
+REFRESH MATERIALIZED VIEW
+CREATE FUNCTION
+CREATE PROCEDURE
+CREATE TRIGGER
+CREATE TYPE
+CREATE DOMAIN
+CREATE EXTENSION
+COMMENT ON
+
+# Управление правами (DCL)
+GRANT
+REVOKE
+CREATE ROLE
+CREATE USER
+ALTER ROLE
+DROP ROLE
+
+# Senior (Администрирование, репликация, сложные конструкции)
+# Управление сервером и конфигурацией
+SHOW (Просмотр параметров)
+SET (Установка параметров сессии)
+ALTER SYSTEM (Изменение конфигурации сервера)
+pg_hba.conf (Файл конфигурации доступа)
+postgresql.conf (Файл конфигурации сервера)
+
+# Блокировки и конкурентный доступ
+LOCK TABLE
+SELECT ... FOR UPDATE
+SELECT ... FOR SHARE
+SELECT ... FOR NO KEY UPDATE
+SELECT ... FOR KEY SHARE
+SET TRANSACTION ISOLATION LEVEL
+
+# Партиционирование
+PARTITION BY RANGE
+PARTITION BY LIST
+PARTITION BY HASH
+ATTACH PARTITION
+DETACH PARTITION
+
+# Полнотекстовый поиск (Конструкции)
+tsvector
+tsquery
+@@ (Match operator)
+
+# Репликация и бэкапы
+pg_dump
+pg_restore
+pg_basebackup
+WAL (Write-Ahead Logging)
+Logical Replication
+Physical Replication
+PUBLICATION
+SUBSCRIPTION
+
+# Прочие продвинутые темы
+TABLESPACE
+SCHEMA (CREATE SCHEMA, SET search_path)
+LATERAL (JOIN LATERAL)
+TABLESAMPLE (Выборка случайных строк)
+LISTEN
+NOTIFY
+PREPARE (Подготовленные запросы)
+EXECUTE
+DEALLOCATE
+DO (Анонимные блоки кода)
+SECURITY DEFINER / INVOKER
+IMMUTABLE / STABLE / VOLATILE (Категории функций)
