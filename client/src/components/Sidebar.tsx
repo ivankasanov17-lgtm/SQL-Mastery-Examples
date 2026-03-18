@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
-import { Database, Server, FolderCode, Terminal } from "lucide-react";
+import { Database, Server, FolderCode, Terminal, FlaskConical } from "lucide-react";
 
 interface SidebarProps {
   className?: string;
@@ -60,6 +60,10 @@ export function Sidebar({ className }: SidebarProps) {
   const shemaItems=[
     { name: "Схемы SQL", id: "schema SQL", href: "/schema/sql", icon: FolderCode },
   ]
+
+  const exampleItems = [
+    { name: "Практические примеры", id: "examples", href: "/examples", icon: FlaskConical },
+  ];
 
   return (
     <div
@@ -154,6 +158,37 @@ export function Sidebar({ className }: SidebarProps) {
               const isActive = currentFullPath === item.href;
               const Icon = item.icon;
 
+              return (
+                <Link
+                  key={item.id}
+                  href={item.href}
+                  className={cn(
+                    "flex items-center px-4 py-2 text-sm font-medium rounded-xl transition-all duration-200 group",
+                    isActive
+                      ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
+                      : "text-muted-foreground hover:bg-secondary hover:text-foreground",
+                  )}
+                >
+                  <Icon
+                    className={cn(
+                      "mr-3 h-4 w-4 transition-colors",
+                      isActive
+                        ? "text-primary-foreground"
+                        : "text-muted-foreground group-hover:text-primary",
+                    )}
+                  />
+                  {item.name}
+                </Link>
+              );
+            })}
+          </nav>
+          <h3 className="px-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider mt-4 mb-2">
+            Примеры
+          </h3>
+          <nav className="space-y-1">
+            {exampleItems.map((item) => {
+              const isActive = currentFullPath === item.href;
+              const Icon = item.icon;
               return (
                 <Link
                   key={item.id}
