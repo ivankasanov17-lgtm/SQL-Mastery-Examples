@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Dashboard from "@/pages/Dashboard";
 import DialectPage from "@/pages/DialectPage";
 import NotFound from "@/pages/not-found";
+import PracticalExamplesPage from "@/pages/PracticalExamplesPage";
 const base = "/SQL-Mastery-Examples/";
 
 function RouterConfig() {
@@ -31,6 +32,9 @@ function RouterConfig() {
         </Route>
         <Route path="/schema/sql">
           <DialectPage title="Схемы SQL" />
+        </Route>
+        <Route path="/examples">
+          <PracticalExamplesPage />
         </Route>
         <Route component={NotFound} />
       </Switch>
